@@ -4,12 +4,15 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.example.colormyviews.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val activityMainBinding =
+            DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         //set listener
         setListeners()
     }
@@ -18,12 +21,12 @@ class MainActivity : AppCompatActivity() {
     private fun setListeners() {
         val clickableViews: List<View> =
             listOf(
-                box_one_text,
-                box_two_text,
-                box_three_text,
-                box_four_text,
-                box_five_text,
-                constraint_layout
+                activityMainBinding.box_one_text,
+                activityMainBinding.box_two_text,
+                activityMainBinding.box_three_text,
+                activityMainBinding.box_four_text,
+                activityMainBinding.box_five_text,
+                activityMainBinding.constraint_layout
             )
         for (item in clickableViews) {
             item.setOnClickListener { makeColored(it) }
